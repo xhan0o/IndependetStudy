@@ -1,4 +1,4 @@
-# IndependetStudy
+# Independet Study
 
 ### Set up python-flask on Raspberry pi 
 1. Installing pip
