@@ -1,6 +1,8 @@
 # Independet Study
 IoT research for wireless sensor networks. 
+
 Setup: RPi as Master node for data collection from slaves. 
+
 Motivation: Creating APIs for integration of sensors data in network. 
 
 ### Set up python-flask on Raspberry pi 
