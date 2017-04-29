@@ -4,9 +4,12 @@ import datetime
 
 
 app = Flask(__name__)
+
 now = datetime.datetime.now()
 datestr=now.strftime("%Y-%m-%d")
 timestr=now.strftime("%H:%M:%S")
+
+#Defining dict
 projects = [
     {
         'id': 1,
@@ -25,10 +28,12 @@ projects = [
 ]
 
 
+#GET req
 @app.route('/test/api/v1.0/dt', methods=['GET'])
 def get_projects():
     return jsonify({'projects': projects})
 
+#GET req for specific ID
 @app.route('/test/api/v1.0/dt/<int:project_id>', methods=['GET'])
 def get_project(project_id):
     project = [project for project in projects if project['id'] == project_id]
@@ -36,10 +41,13 @@ def get_project(project_id):
         abort(404)
     return jsonify({'project': project[0]})
 
+#Error handler for abort(404) 
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
+
+#POST req. add title,description , date-time will be taken current fron system. id will be +1
 @app.route('/test/api/v1.0/dt', methods=['POST'])
 def create_project():
     if not request.json or not 'title' in request.json:
@@ -54,6 +62,7 @@ def create_project():
     projects.append(project)
     return jsonify({'project': project}), 201
 
+#PUT req. Update any paraments by id number.
 @app.route('/test/api/v1.0/dt/<int:project_id>', methods=['PUT'])
 def update_project(project_id):
     project = [project for project in projects if project['id'] == project_id]
@@ -75,6 +84,7 @@ def update_project(project_id):
     project[0]['time'] = request.json.get('time', project[0]['time'])
     return jsonify({'project': project[0]})
 
+#DELETE req. Delete by id number.
 @app.route('/test/api/v1.0/dt/<int:project_id>', methods=['DELETE'])
 def delete_project(project_id):
     project = [project for project in projects if project['id'] == project_id]
