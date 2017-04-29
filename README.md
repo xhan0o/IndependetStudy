@@ -5,6 +5,8 @@ Setup: RPi as Master node for data collection from slaves.
 
 Motivation: Creating APIs for integration of sensors data in network. 
 
+Creating server of Raspberry PI and developing APIs with python-flask. 
+
 ### Set up python-flask on Raspberry pi 
 1. Installing pip
 ```bash
